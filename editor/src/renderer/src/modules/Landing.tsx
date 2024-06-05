@@ -1,4 +1,7 @@
 import React from 'react';
+
+import Editor from './Editor';
+
 import {
     Menubar,
     MenubarContent,
@@ -9,13 +12,31 @@ import {
     MenubarTrigger,
   } from "@/components/ui/menubar"
 
+import {
+    ResizableHandle,
+    ResizablePanel,
+    ResizablePanelGroup,
+} from "@/components/ui/resizable"
+
+import {
+    Table,
+    TableBody,
+    TableCaption,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "@/components/ui/table"
+
+
 interface LandingProps {
 
 }
 
 const Landing: React.FC<LandingProps> = () => {
     return (
-        <Menubar>
+        <main>
+            <Menubar>
             <MenubarMenu>
                 <MenubarTrigger>File</MenubarTrigger>
                 <MenubarContent>
@@ -55,7 +76,40 @@ const Landing: React.FC<LandingProps> = () => {
                 <MenubarItem>Print</MenubarItem>
                 </MenubarContent>
             </MenubarMenu>
-        </Menubar>
+            </Menubar>
+            <div className='h-auto'>
+            <ResizablePanelGroup direction="horizontal">
+                <ResizablePanel>
+                    <Table>
+                        <TableCaption>A list of your recent invoices.</TableCaption>
+                        <TableHeader>
+                            <TableRow>
+                            <TableHead className="w-[100px]">Files</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            <TableRow>
+                            <TableCell className="font-medium">Filename</TableCell>
+                            </TableRow>
+                            <TableRow>
+                            <TableCell className="font-medium">Filename</TableCell>
+                            </TableRow>
+                            <TableRow>
+                            <TableCell className="font-medium">Filename</TableCell>
+                            </TableRow>
+                            <TableRow>
+                            <TableCell className="font-medium">Filename</TableCell>
+                            </TableRow>
+                        </TableBody>
+                    </Table>
+                </ResizablePanel>
+                <ResizableHandle/>
+                <ResizablePanel>
+                    <Editor/>
+                </ResizablePanel>
+            </ResizablePanelGroup>
+            </div>
+        </main>
     );
 };
 
