@@ -77,8 +77,8 @@ const Landing: React.FC<LandingProps> = () => {
                 </MenubarContent>
             </MenubarMenu>
             </Menubar>
-            <div className='h-auto'>
-            <ResizablePanelGroup direction="horizontal">
+            <div>
+            <ResizablePanelGroup direction="horizontal" className='h-full'>
                 <ResizablePanel>
                     <Table>
                         <TableCaption>A list of your recent invoices.</TableCaption>
