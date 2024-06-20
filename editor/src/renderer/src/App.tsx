@@ -4,9 +4,7 @@ import Landing from "./modules/Landing";
 function App(): JSX.Element {
   return (
     <>
-      <main>
         <Landing />
-      </main>
     </>
   )
 }
