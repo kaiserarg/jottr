@@ -1,35 +1,41 @@
-import Versions from './components/Versions'
-import electronLogo from './assets/electron.svg'
+import React from 'react';
+import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin';
+import { LexicalComposer } from '@lexical/react/LexicalComposer';
+import { ContentEditable } from '@lexical/react/LexicalContentEditable';
+import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary';
+import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
+import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
 
-function App() {
-  const ipcHandle = () => window.electron.ipcRenderer.send('ping')
+//custom
+import Theme from './Theme';
+import ToolbarPlugin from './plugins/ToolbarPlugin';
 
+const placeholder = 'Enter text...';
+
+const editorConfig = {
+  namespace: 'editor',
+  nodes: [],
+  onError(error) {
+    throw error;
+  },
+  theme: Theme,
+};
+
+export default function App() {
   return (
-    <>
-      <img alt="logo" className="logo" src={electronLogo} />
-      <div className="creator">Powered by electron-vite</div>
-      <div className="text">
-        Build an Electron app with <span className="react">React</span>
-      </div>
-      <p className="tip">
-        Please try pressing <code>F12</code> to open the devTool
-      </p>
-      <div className="actions">
-        <div className="action">
-          <a href="https://electron-vite.org/" target="_blank" rel="noreferrer">
-            Documentation
-          </a>
-        </div>
-        <div className="action">
-          <a target="_blank" rel="noreferrer" onClick={ipcHandle}>
-            Send IPC
-          </a>
+    <LexicalComposer initialConfig={editorConfig}>
+      <div className="editor-container">
+        <ToolbarPlugin />
+        <div className="editor-inner">
+          <RichTextPlugin
+            contentEditable={<ContentEditable className="editor-input" />}
+            placeholder={<div className="editor-placeholder">{placeholder}</div>}
+            ErrorBoundary={LexicalErrorBoundary}
+          />
+          <HistoryPlugin />
+          <AutoFocusPlugin />
         </div>
       </div>
-      <Versions></Versions>
-    </>
-  )
+    </LexicalComposer>
+  );
 }
-
-export default App
-

@@ -19,7 +19,12 @@
   },
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.0",
-    "@electron-toolkit/utils": "^3.0.0"
+    "@electron-toolkit/utils": "^3.0.0",
+    "@lexical/code": "^0.16.1",
+    "@lexical/link": "^0.16.1",
+    "@lexical/react": "^0.16.1",
+    "@lexical/rich-text": "^0.16.1",
+    "lexical": "^0.16.1"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config": "^1.0.2",
